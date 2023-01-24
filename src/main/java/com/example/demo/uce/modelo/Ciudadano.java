@@ -1,5 +1,6 @@
 package com.example.demo.uce.modelo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +24,9 @@ public class Ciudadano {
 	private String apellido;
 
 	// Uno a uno
+	//@OneToOne(mappedBy = "ciudadano", cascade = CascadeType.ALL)
 	@OneToOne(mappedBy = "ciudadano")
+
 	private Empleado empleado;
 
 	// GET Y SET
