@@ -22,16 +22,20 @@ import com.example.demo.uce.modelo.Empleado;
 import com.example.demo.uce.modelo.Estudiante;
 import com.example.demo.uce.modelo.Habitacion;
 import com.example.demo.uce.modelo.Hotel;
+import com.example.demo.uce.modelo.Producto;
+import com.example.demo.uce.modelo.TipoProducto;
 import com.example.demo.uce.service.ICiudadanoService;
 import com.example.demo.uce.service.IEmpleadoService;
 import com.example.demo.uce.service.IEstudianteService;
 import com.example.demo.uce.service.IHabitacionService;
 import com.example.demo.uce.service.IHotelService;
+import com.example.demo.uce.service.ITipoProductoService;
 
 @SpringBootApplication
 public class ProyectoPaU2ScApplication implements CommandLineRunner {
+	
 	@Autowired
-	private com.example.demo.uce.service.ICocheEmpresaService cocheEmpresaService;
+	private ITipoProductoService iTipoProductoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2ScApplication.class, args);
@@ -126,17 +130,17 @@ public class ProyectoPaU2ScApplication implements CommandLineRunner {
 //		this.iHotelService.borrar(1);
 		
 		
-		CochesEmplesa cochesEmplesa = new CochesEmplesa();
-		cochesEmplesa.setColor("Rojo");
-		cochesEmplesa.setPlaca("prt2341");
-
-		Empleados empleado = new Empleados();
-		empleado.setApellido("chango");
-		empleado.setNombre("santiago");
-		empleado.setSalario(new BigDecimal(100));
-		empleado.setCochesemplesa(cochesEmplesa);
-		
-		cochesEmplesa.setEmpleados(empleado);
+//		CochesEmplesa cochesEmplesa = new CochesEmplesa();
+//		cochesEmplesa.setColor("Rojo");
+//		cochesEmplesa.setPlaca("prt2341");
+//
+//		Empleados empleado = new Empleados();
+//		empleado.setApellido("chango");
+//		empleado.setNombre("santiago");
+//		empleado.setSalario(new BigDecimal(100));
+//		empleado.setCochesemplesa(cochesEmplesa);
+//		
+//		cochesEmplesa.setEmpleados(empleado);
 
 		//CREACION
 //		this.cocheEmpresaService.crear(cochesEmplesa);
@@ -147,8 +151,43 @@ public class ProyectoPaU2ScApplication implements CommandLineRunner {
 //		this.cocheEmpresaService.modificar(cochesEmplesa2);
 		
 		//ELIMINAR
-		this.cocheEmpresaService.borrar(2);
+//		this.cocheEmpresaService.borrar(2);
+		
+		List<Producto> list=new ArrayList<>();
+		
+		TipoProducto tipoProducto=new TipoProducto();
+		tipoProducto.setNombre("carnes");
+		
+		Producto producto=new Producto();
+		producto.setNombre("lomofino");
+		producto.setPrecio(new BigDecimal(6));
+		producto.setTipoproducto(tipoProducto);
+		list.add(producto);
+		
+		Producto producto1=new Producto();
+		producto1.setNombre("lomofalda");
+		producto1.setPrecio(new BigDecimal(4));
+		producto1.setTipoproducto(tipoProducto);
+		list.add(producto1);
+		
+		Producto producto2=new Producto();
+		producto2.setNombre("pulpa");
+		producto2.setPrecio(new BigDecimal(3));
+		producto2.setTipoproducto(tipoProducto);
+		list.add(producto2);
+		
+		tipoProducto.setProducto(list);
+		
+//		this.iTipoProductoService.crear(tipoProducto);
 
+//		BUSQUEDA Y ACTUALIZACION
+
+//		TipoProducto tipoProducto2 = this.iTipoProductoService.buscar(1);
+//		tipoProducto2.setNombre("cortes de carne");
+//		this.iTipoProductoService.modificar(tipoProducto2);
+		
+		
+		this.iTipoProductoService.borrar(1);
 	}
 
 }
