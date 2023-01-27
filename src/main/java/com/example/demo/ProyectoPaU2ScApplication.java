@@ -14,6 +14,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.uce.modelo.CochesEmplesa;
+import com.example.demo.uce.modelo.Empleados;
+import com.example.demo.uce.service.ICocheEmpresaService;
 import com.example.demo.uce.modelo.Ciudadano;
 import com.example.demo.uce.modelo.Empleado;
 import com.example.demo.uce.modelo.Estudiante;
@@ -27,12 +30,8 @@ import com.example.demo.uce.service.IHotelService;
 
 @SpringBootApplication
 public class ProyectoPaU2ScApplication implements CommandLineRunner {
-
 	@Autowired
-	private IHotelService iHotelService;
-
-	@Autowired
-	private IHabitacionService iHabitacionService;
+	private com.example.demo.uce.service.ICocheEmpresaService cocheEmpresaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoPaU2ScApplication.class, args);
@@ -83,7 +82,7 @@ public class ProyectoPaU2ScApplication implements CommandLineRunner {
 //		Ciudadano ciu1 =this.ciudadanoService.encontrar(1);
 //		ciu1.setNombre("Henry");
 //		this.ciudadanoService.actualizar(ciu1);
-		List<Habitacion> habitacionlist = new ArrayList<>();
+//		List<Habitacion> habitacionlist = new ArrayList<>();
 
 //		Hotel hotel = new Hotel();
 //		hotel.setNombre("La coruña");
@@ -110,14 +109,14 @@ public class ProyectoPaU2ScApplication implements CommandLineRunner {
 
 //		BUSQUEDA Y ACTUALIZACION
 
-		Hotel hotel2 = this.iHotelService.buscar(2);
-		System.out.println("El nombre del hotel es: "+hotel2.getNombre());
-		System.out.println("SUS habitaciones son: ");
-		
-		for (Habitacion habitacion : hotel2.getHabitaciones()) {
-			System.out.println(habitacion);
-		}
-		
+//		Hotel hotel2 = this.iHotelService.buscar(2);
+//		System.out.println("El nombre del hotel es: "+hotel2.getNombre());
+//		System.out.println("SUS habitaciones son: ");
+//		
+//		for (Habitacion habitacion : hotel2.getHabitaciones()) {
+//			System.out.println(habitacion);
+//		}
+//		
 
 //		Habitacion habitacion3=this.iHabitacionService.buscar(14);
 
@@ -125,6 +124,30 @@ public class ProyectoPaU2ScApplication implements CommandLineRunner {
 
 		// BORRAR
 //		this.iHotelService.borrar(1);
+		
+		
+		CochesEmplesa cochesEmplesa = new CochesEmplesa();
+		cochesEmplesa.setColor("Rojo");
+		cochesEmplesa.setPlaca("prt2341");
+
+		Empleados empleado = new Empleados();
+		empleado.setApellido("chango");
+		empleado.setNombre("santiago");
+		empleado.setSalario(new BigDecimal(100));
+		empleado.setCochesemplesa(cochesEmplesa);
+		
+		cochesEmplesa.setEmpleados(empleado);
+
+		//CREACION
+//		this.cocheEmpresaService.crear(cochesEmplesa);
+		
+		//BUSCAR Y ACTUALIZAR
+//		CochesEmplesa cochesEmplesa2=this.cocheEmpresaService.buscar(2);
+//		cochesEmplesa2.setColor("blanco");
+//		this.cocheEmpresaService.modificar(cochesEmplesa2);
+		
+		//ELIMINAR
+		this.cocheEmpresaService.borrar(2);
 
 	}
 
